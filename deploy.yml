@@ -1,0 +1,19 @@
+version: 1
+applications:
+  github-api-nest:
+    artifact: dist/*
+    platform: nodejs
+    proxyServer:
+      nginx:
+        proxyPort: 80
+    environment_variables:
+      NODE_ENV: production
+      PORT: 3306
+      DATABASE_HOST: localhost
+      DATABASE_PORT: 3306
+      DATABASE_USERNAME: root
+      DATABASE_PASSWORD: 
+      DATABASE_NAME: github_db
+    command:
+      - npm install --production
+      - npm run migrate:run
